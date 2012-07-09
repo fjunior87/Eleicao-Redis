@@ -16,8 +16,7 @@ public class Urna {
 	}
 	
 	public void submeterVoto(Voto voto){
-		jedis.zincrby(ChavesGerais.CANDIDATOS.toString(), 1, voto.getNumeroCandidato().toString());
-		
+		jedis.zincrby(ChavesGerais.CANDIDATOS.name(), 1, voto.getNumeroCandidato().toString());
 	}
 	
 	public Set<String> obterCandidatos(){
