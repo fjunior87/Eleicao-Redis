@@ -11,15 +11,19 @@ import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.ComponentFactory;
 
-public class JedisPollCreator implements ComponentFactory<Jedis>{
+@Component
+@ApplicationScoped
+public class JedisPollCreator implements ComponentFactory<JedisPool>{
 
 	 private JedisPool pool;
-	 public Jedis getInstance() {
-		return null;
+	 public JedisPool getInstance() {
+		return pool;
 	}
 	 
 	@PostConstruct
 	public void create(){
 		pool = new JedisPool(new JedisPoolConfig(),"localhost");
 	}
+	
+	
 }
