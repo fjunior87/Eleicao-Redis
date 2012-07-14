@@ -1,10 +1,8 @@
 package com.xicojunior.eleicao;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
-import com.google.common.annotations.Beta;
-
-import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import br.com.caelum.vraptor.ioc.ApplicationScoped;
@@ -23,6 +21,11 @@ public class JedisPollCreator implements ComponentFactory<JedisPool>{
 	@PostConstruct
 	public void create(){
 		pool = new JedisPool(new JedisPoolConfig(),"localhost");
+	}
+	
+	@PreDestroy
+	public void destroy(){
+		pool.destroy();
 	}
 	
 	
